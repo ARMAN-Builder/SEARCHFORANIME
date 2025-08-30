@@ -1,61 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Anime Image Search</title>
+    <title>Anime Character Search</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            background-color: #f5f5f5;
         }
         input {
             padding: 10px;
-            width: 200px;
+            width: 250px;
             font-size: 16px;
         }
         button {
             padding: 10px;
             font-size: 16px;
+            margin-left: 10px;
+        }
+        .character {
+            margin-top: 30px;
+            display: inline-block;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+            max-width: 400px;
         }
         img {
-            margin-top: 20px;
-            max-width: 300px;
-            height: auto;
-            border: 2px solid #333;
+            max-width: 200px;
+            border-radius: 10px;
+        }
+        h2, h3 {
+            margin: 10px 0;
         }
         p {
-            font-weight: bold;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <h1>Anime Image Search</h1>
-    <input type="text" id="searchInput" placeholder="Enter anime name">
-    <button onclick="searchAnime()">Search</button>
-    <div>
-        <p id="resultText"></p>
-        <img id="animeImg" src="" alt="">
-    </div>
+    <h1>Anime Character Search</h1>
+    <input type="text" id="searchInput" placeholder="Enter character name">
+    <button onclick="searchCharacter()">Search</button>
+
+    <div id="result"></div>
 
     <script>
-        const animeData = {
-            "luffy": "https://upload.wikimedia.org/wikipedia/en/7/7b/Luffy_Anime.png",
-            "naruto": "https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png",
-            "goku": "https://upload.wikimedia.org/wikipedia/en/0/01/Goku_Anime.png",
-            "sasuke": "https://upload.wikimedia.org/wikipedia/en/f/fb/Sasuke_Uchiha.png"
-        };
+        const characters = [
+            {
+                name: "Monkey D. Luffy",
+                series: "One Piece",
+                description: "The energetic and carefree captain of the Straw Hat Pirates, seeking the One Piece treasure.",
+                image: "https://upload.wikimedia.org/wikipedia/en/7/7b/Luffy_Anime.png"
+            },
+            {
+                name: "Naruto Uzumaki",
+                series: "Naruto",
+                description: "A ninja from the Hidden Leaf Village who dreams of becoming the strongest leader, the Hokage.",
+                image: "https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png"
+            },
+            {
+                name: "Goku",
+                series: "Dragon Ball",
+                description: "A Saiyan warrior with unmatched fighting skills, always seeking stronger opponents.",
+                image: "https://upload.wikimedia.org/wikipedia/en/0/01/Goku_Anime.png"
+            },
+            {
+                name: "Sasuke Uchiha",
+                series: "Naruto",
+                description: "A talented ninja who seeks power to avenge his clan and protect his village.",
+                image: "https://upload.wikimedia.org/wikipedia/en/f/fb/Sasuke_Uchiha.png"
+            }
+        ];
 
-        function searchAnime() {
+        function searchCharacter() {
             const input = document.getElementById('searchInput').value.toLowerCase();
-            const img = document.getElementById('animeImg');
-            const resultText = document.getElementById('resultText');
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "";
 
-            if(animeData[input]) {
-                img.src = animeData[input];
-                resultText.textContent = "Showing: " + input.charAt(0).toUpperCase() + input.slice(1);
+            const character = characters.find(c => c.name.toLowerCase().includes(input));
+
+            if(character) {
+                resultDiv.innerHTML = `
+                    <div class="character">
+                        <h2>${character.name}</h2>
+                        <h3>${character.series}</h3>
+                        <img src="${character.image}" alt="${character.name}">
+                        <p>${character.description}</p>
+                    </div>
+                `;
             } else {
-                img.src = "";
-                resultText.textContent = "Anime not found!";
+                resultDiv.innerHTML = "<p>Character not found!</p>";
             }
         }
     </script>
