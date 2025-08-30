@@ -7,11 +7,10 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: #f5f5f5;
         }
         input {
-            padding: 10px;
             width: 250px;
+            padding: 10px;
             font-size: 16px;
         }
         button {
@@ -22,11 +21,9 @@
         .character {
             margin-top: 30px;
             display: inline-block;
-            background: #fff;
+            background: #f5f5f5;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px #ccc;
-            max-width: 400px;
         }
         img {
             max-width: 200px;
@@ -34,9 +31,6 @@
         }
         h2, h3 {
             margin: 10px 0;
-        }
-        p {
-            font-size: 14px;
         }
     </style>
 </head>
@@ -50,42 +44,42 @@
     <script>
         const characters = [
             {
-                name: "Monkey D. Luffy",
+                name: "luffy",
                 series: "One Piece",
                 description: "The energetic and carefree captain of the Straw Hat Pirates, seeking the One Piece treasure.",
-                image: "https://i.pinimg.com/736x/4d/5f/61/4d5f61daa6f1aec09d78a1b31be87f68.jpg
+                image: "https://i.pinimg.com/736x/4d/5f/61/4d5f61daa6f1aec09d78a1b31be87f68.jpg"
             },
             {
-                name: "Naruto Uzumaki",
+                name: "naruto",
                 series: "Naruto",
-                description: "A ninja from the Hidden Leaf Village who dreams of becoming the strongest leader, the Hokage.",
-                image: "https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png"
+                description: "A ninja from the Hidden Leaf Village who dreams of becoming Hokage.",
+                image: "https://i.imgur.com/yEweIVv.png"
             },
             {
-                name: "Goku",
+                name: "goku",
                 series: "Dragon Ball",
                 description: "A Saiyan warrior with unmatched fighting skills, always seeking stronger opponents.",
-                image: "https://upload.wikimedia.org/wikipedia/en/0/01/Goku_Anime.png"
+                image: "https://i.imgur.com/w3duR07.png"
             },
             {
-                name: "Sasuke Uchiha",
+                name: "sasuke",
                 series: "Naruto",
                 description: "A talented ninja who seeks power to avenge his clan and protect his village.",
-                image: "https://upload.wikimedia.org/wikipedia/en/f/fb/Sasuke_Uchiha.png"
+                image: "https://i.imgur.com/HLKpjqn.png"
             }
         ];
 
         function searchCharacter() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
             const resultDiv = document.getElementById('result');
             resultDiv.innerHTML = "";
 
-            const character = characters.find(c => c.name.toLowerCase().includes(input));
+            const character = characters.find(c => c.name === input);
 
             if(character) {
                 resultDiv.innerHTML = `
                     <div class="character">
-                        <h2>${character.name}</h2>
+                        <h2>${character.name.charAt(0).toUpperCase() + character.name.slice(1)}</h2>
                         <h3>${character.series}</h3>
                         <img src="${character.image}" alt="${character.name}">
                         <p>${character.description}</p>
