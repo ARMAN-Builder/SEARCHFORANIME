@@ -6,11 +6,10 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 30px;
-            background-color: #f0f0f0;
+            padding: 50px;
         }
         input {
-            width: 300px;
+            width: 250px;
             padding: 10px;
             font-size: 16px;
         }
@@ -22,11 +21,9 @@
         .character {
             margin-top: 30px;
             display: inline-block;
-            background: #fff;
+            background: #f5f5f5;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px #ccc;
-            max-width: 400px;
         }
         img {
             max-width: 200px;
@@ -34,9 +31,6 @@
         }
         h2, h3 {
             margin: 10px 0;
-        }
-        p {
-            font-size: 14px;
         }
     </style>
 </head>
@@ -49,21 +43,30 @@
 
     <script>
         const characters = [
-            {name: "luffy", series: "One Piece", description: "Captain of the Straw Hat Pirates, seeking the One Piece treasure.", image: "https://i.pinimg.com/736x/4d/5f/61/4d5f61daa6f1aec09d78a1b31be87f68.jpg"},
-            {name: "naruto", series: "Naruto", description: "A ninja from Hidden Leaf Village who dreams of becoming Hokage.", image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Fnaruto-uzumaki-wallpaper--937733953640665961%2F&psig=AOvVaw3J88kyKW9_6-RVhGYsCnBL&ust=1756627343842000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLCA8vSIso8DFQAAAAAdAAAAABAE
-            {name: "goku", series: "Dragon Ball", description: "A Saiyan warrior always seeking stronger opponents.", image: "https://i.imgur.com/w3duR07.png"},
-            {name: "sasuke", series: "Naruto", description: "A talented ninja seeking power to avenge his clan.", image: "https://i.imgur.com/HLKpjqn.png"},
-            {name: "ichigo", series: "Bleach", description: "A substitute Soul Reaper protecting humans from evil spirits.", image: "https://i.imgur.com/hpjhVwn.png"},
-            {name: "eren", series: "Attack on Titan", description: "A young soldier determined to defeat the Titans.", image: "https://i.imgur.com/f0F8jRc.png"},
-            {name: "mikasa", series: "Attack on Titan", description: "A skilled soldier and Eren's adoptive sister.", image: "https://i.imgur.com/7X3rK9Z.png"},
-            {name: "tanjiro", series: "Demon Slayer", description: "A demon slayer seeking a cure for his sister.", image: "https://i.imgur.com/qKq5l6p.png"},
-            {name: "nezuko", series: "Demon Slayer", description: "Tanjiro's sister turned demon, protecting humans.", image: "https://i.imgur.com/2NMTu1Y.png"},
-            {name: "saitama", series: "One Punch Man", description: "A hero who defeats every opponent with one punch.", image: "https://i.imgur.com/PWzE4vV.png"},
-            {name: "bakugo", series: "My Hero Academia", description: "A hot-headed hero-in-training with explosive powers.", image: "https://i.imgur.com/7Oa0i6R.png"},
-            {name: "midoriya", series: "My Hero Academia", description: "A kind-hearted hero-in-training inheriting One For All.", image: "https://i.imgur.com/2nTUzq9.png"},
-            {name: "levi", series: "Attack on Titan", description: "Humanity's strongest soldier, extremely skilled.", image: "https://i.imgur.com/JqZg2kh.png"},
-            {name: "kakashi", series: "Naruto", description: "The Copy Ninja, teacher of Team 7.", image: "https://i.imgur.com/BdG1j6E.png"},
-            {name: "gon", series: "Hunter x Hunter", description: "A young boy seeking to become a Hunter and find his father.", image: "https://i.imgur.com/5JZdGPO.png"}
+            {
+                name: "luffy",
+                series: "One Piece",
+                description: "The energetic and carefree captain of the Straw Hat Pirates, seeking the One Piece treasure.",
+                image: "https://i.pinimg.com/736x/4d/5f/61/4d5f61daa6f1aec09d78a1b31be87f68.jpg"
+            },
+            {
+                name: "naruto",
+                series: "Naruto",
+                description: "A ninja from the Hidden Leaf Village who dreams of becoming Hokage.",
+                image: "https://i.imgur.com/yEweIVv.png"
+            },
+            {
+                name: "goku",
+                series: "Dragon Ball",
+                description: "A Saiyan warrior with unmatched fighting skills, always seeking stronger opponents.",
+                image: "https://i.imgur.com/w3duR07.png"
+            },
+            {
+                name: "sasuke",
+                series: "Naruto",
+                description: "A talented ninja who seeks power to avenge his clan and protect his village.",
+                image: "https://i.imgur.com/HLKpjqn.png"
+            }
         ];
 
         function searchCharacter() {
@@ -71,8 +74,7 @@
             const resultDiv = document.getElementById('result');
             resultDiv.innerHTML = "";
 
-            // Partial and case-insensitive match
-            const character = characters.find(c => c.name.toLowerCase().includes(input));
+            const character = characters.find(c => c.name === input);
 
             if(character) {
                 resultDiv.innerHTML = `
@@ -90,4 +92,3 @@
     </script>
 </body>
 </html>
-
