@@ -7,99 +7,94 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
+      background: #f5f5f5;
       margin: 0;
       padding: 20px;
       text-align: center;
     }
     h1 {
-      color: #ff9800;
+      color: #333;
     }
     input {
       padding: 10px;
-      width: 80%;
+      width: 50%;
       margin: 20px 0;
+      border: 2px solid #333;
       border-radius: 5px;
-      border: none;
       font-size: 16px;
     }
     .character {
-      background: #1e1e1e;
-      border-radius: 10px;
+      display: inline-block;
+      width: 200px;
+      margin: 15px;
+      background: #fff;
       padding: 15px;
-      margin: 15px auto;
-      max-width: 300px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    img {
+    .character img {
       width: 100%;
+      height: auto;
       border-radius: 10px;
     }
-    .name {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 10px 0;
+    .character h2 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      color: #444;
     }
-    .anime {
-      font-size: 16px;
-      color: #ff9800;
+    .character p {
+      font-size: 14px;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <h1>Anime Character Info</h1>
-  <input type="text" id="search" placeholder="Search for a character..." onkeyup="searchCharacter()">
+  <input type="text" id="search" placeholder="Search for a character...">
 
   <div id="characters">
-    <div class="character">
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Naruto_Uzumaki.png" alt="Naruto">
-      <div class="name">Naruto Uzumaki</div>
-      <div class="anime">Anime: Naruto</div>
+    <div class="character" data-name="Naruto Uzumaki">
+      <img src="images/naruto.png" alt="Naruto">
+      <h2>Naruto Uzumaki</h2>
+      <p>From: Naruto</p>
     </div>
-    <div class="character">
-      <img src="https://static.wikia.nocookie.net/onepiece/images/2/29/Luffy_Anime_Infobox.png" alt="Luffy">
-      <div class="name">Monkey D. Luffy</div>
-      <div class="anime">Anime: One Piece</div>
+    <div class="character" data-name="Monkey D. Luffy">
+      <img src="images/luffy.png" alt="Luffy">
+      <h2>Monkey D. Luffy</h2>
+      <p>From: One Piece</p>
     </div>
-    <div class="character">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Goku_Anime.png" alt="Goku">
-      <div class="name">Goku</div>
-      <div class="anime">Anime: Dragon Ball Z</div>
+    <div class="character" data-name="Son Goku">
+      <img src="images/goku.png" alt="Goku">
+      <h2>Son Goku</h2>
+      <p>From: Dragon Ball</p>
     </div>
-    <div class="character">
-      <img src="https://static.wikia.nocookie.net/bleach/images/7/72/Ichigo_Kurosaki.png" alt="Ichigo">
-      <div class="name">Ichigo Kurosaki</div>
-      <div class="anime">Anime: Bleach</div>
+    <div class="character" data-name="Sasuke Uchiha">
+      <img src="images/sasuke.png" alt="Sasuke">
+      <h2>Sasuke Uchiha</h2>
+      <p>From: Naruto</p>
     </div>
-    <div class="character">
-      <img src="https://static.wikia.nocookie.net/attackontitan/images/f/f6/Eren_Jaeger_Anime.png" alt="Eren">
-      <div class="name">Eren Yeager</div>
-      <div class="anime">Anime: Attack on Titan</div>
-    </div>
-    <div class="character">
-      <img src="https://static.wikia.nocookie.net/myheroacademia/images/3/35/Izuku_Midoriya.png" alt="Deku">
-      <div class="name">Izuku Midoriya (Deku)</div>
-      <div class="anime">Anime: My Hero Academia</div>
+    <div class="character" data-name="Ichigo Kurosaki">
+      <img src="images/ichigo.png" alt="Ichigo">
+      <h2>Ichigo Kurosaki</h2>
+      <p>From: Bleach</p>
     </div>
   </div>
 
   <script>
-    function searchCharacter() {
-      let input = document.getElementById("search").value.toLowerCase();
-      let characters = document.getElementsByClassName("character");
+    const search = document.getElementById('search');
+    const characters = document.querySelectorAll('.character');
 
-      for (let i = 0; i < characters.length; i++) {
-        let name = characters[i].getElementsByClassName("name")[0].innerText.toLowerCase();
-        let anime = characters[i].getElementsByClassName("anime")[0].innerText.toLowerCase();
-
-        if (name.includes(input) || anime.includes(input)) {
-          characters[i].style.display = "block";
+    search.addEventListener('input', function() {
+      const value = search.value.toLowerCase();
+      characters.forEach(char => {
+        const name = char.dataset.name.toLowerCase();
+        if (name.includes(value)) {
+          char.style.display = 'inline-block';
         } else {
-          characters[i].style.display = "none";
+          char.style.display = 'none';
         }
-      }
-    }
+      });
+    });
   </script>
 </body>
 </html>
