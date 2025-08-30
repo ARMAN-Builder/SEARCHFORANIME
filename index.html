@@ -1,100 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anime Character Info</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      color: #333;
-    }
-    input {
-      padding: 10px;
-      width: 50%;
-      margin: 20px 0;
-      border: 2px solid #333;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    .character {
-      display: inline-block;
-      width: 200px;
-      margin: 15px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .character img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    .character h2 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-      color: #444;
-    }
-    .character p {
-      font-size: 14px;
-      color: #666;
-    }
-  </style>
+    <title>Anime Image Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 300px;
+            height: auto;
+            border: 2px solid #333;
+        }
+        p {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <h1>Anime Character Info</h1>
-  <input type="text" id="search" placeholder="Search for a character...">
+    <h1>Anime Image Search</h1>
+    <input type="text" id="searchInput" placeholder="Enter anime name">
+    <button onclick="searchAnime()">Search</button>
+    <div>
+        <p id="resultText"></p>
+        <img id="animeImg" src="" alt="">
+    </div>
 
-  <div id="characters">
-    <div class="character" data-name="Naruto Uzumaki">
-      <img src="images/naruto.png" alt="Naruto">
-      <h2>Naruto Uzumaki</h2>
-      <p>From: Naruto</p>
-    </div>
-    <div class="character" data-name="Monkey D. Luffy">
-      <img src="images/luffy.png" alt="Luffy">
-      <h2>Monkey D. Luffy</h2>
-      <p>From: One Piece</p>
-    </div>
-    <div class="character" data-name="Son Goku">
-      <img src="images/goku.png" alt="Goku">
-      <h2>Son Goku</h2>
-      <p>From: Dragon Ball</p>
-    </div>
-    <div class="character" data-name="Sasuke Uchiha">
-      <img src="images/sasuke.png" alt="Sasuke">
-      <h2>Sasuke Uchiha</h2>
-      <p>From: Naruto</p>
-    </div>
-    <div class="character" data-name="Ichigo Kurosaki">
-      <img src="images/ichigo.png" alt="Ichigo">
-      <h2>Ichigo Kurosaki</h2>
-      <p>From: Bleach</p>
-    </div>
-  </div>
+    <script>
+        const animeData = {
+            "luffy": "https://upload.wikimedia.org/wikipedia/en/7/7b/Luffy_Anime.png",
+            "naruto": "https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png",
+            "goku": "https://upload.wikimedia.org/wikipedia/en/0/01/Goku_Anime.png",
+            "sasuke": "https://upload.wikimedia.org/wikipedia/en/f/fb/Sasuke_Uchiha.png"
+        };
 
-  <script>
-    const search = document.getElementById('search');
-    const characters = document.querySelectorAll('.character');
+        function searchAnime() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const img = document.getElementById('animeImg');
+            const resultText = document.getElementById('resultText');
 
-    search.addEventListener('input', function() {
-      const value = search.value.toLowerCase();
-      characters.forEach(char => {
-        const name = char.dataset.name.toLowerCase();
-        if (name.includes(value)) {
-          char.style.display = 'inline-block';
-        } else {
-          char.style.display = 'none';
+            if(animeData[input]) {
+                img.src = animeData[input];
+                resultText.textContent = "Showing: " + input.charAt(0).toUpperCase() + input.slice(1);
+            } else {
+                img.src = "";
+                resultText.textContent = "Anime not found!";
+            }
         }
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
