@@ -7,98 +7,99 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f4f4f9;
+      background-color: #121212;
+      color: #fff;
       margin: 0;
       padding: 20px;
+      text-align: center;
     }
     h1 {
-      color: #333;
+      color: #ff9800;
     }
-    #searchBox {
+    input {
       padding: 10px;
-      width: 250px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
+      width: 80%;
+      margin: 20px 0;
       border-radius: 5px;
+      border: none;
+      font-size: 16px;
     }
-    .characters {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .card {
-      background: white;
+    .character {
+      background: #1e1e1e;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      width: 200px;
       padding: 15px;
+      margin: 15px auto;
+      max-width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     }
-    .card img {
+    img {
       width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
     }
-    .card h2 {
-      margin: 10px 0 5px;
-      font-size: 18px;
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
     }
-    .card p {
-      font-size: 14px;
-      color: #555;
+    .anime {
+      font-size: 16px;
+      color: #ff9800;
     }
   </style>
 </head>
 <body>
   <h1>Anime Character Info</h1>
-  <input type="text" id="searchBox" placeholder="Search characters...">
+  <input type="text" id="search" placeholder="Search for a character..." onkeyup="searchCharacter()">
 
-  <div class="characters" id="characterList">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Naruto_Uzumaki.png" alt="Naruto">
-      <h2>Naruto Uzumaki</h2>
-      <p>From: Naruto</p>
+  <div id="characters">
+    <div class="character">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Naruto_Uzumaki.png" alt="Naruto">
+      <div class="name">Naruto Uzumaki</div>
+      <div class="anime">Anime: Naruto</div>
     </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/50/Luffy.png" alt="Luffy">
-      <h2>Monkey D. Luffy</h2>
-      <p>From: One Piece</p>
+    <div class="character">
+      <img src="https://static.wikia.nocookie.net/onepiece/images/2/29/Luffy_Anime_Infobox.png" alt="Luffy">
+      <div class="name">Monkey D. Luffy</div>
+      <div class="anime">Anime: One Piece</div>
     </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/18/Goku_anime.png" alt="Goku">
-      <h2>Son Goku</h2>
-      <p>From: Dragon Ball</p>
+    <div class="character">
+      <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Goku_Anime.png" alt="Goku">
+      <div class="name">Goku</div>
+      <div class="anime">Anime: Dragon Ball Z</div>
     </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/7/72/Ichigo_Kurosaki.png" alt="Ichigo">
-      <h2>Ichigo Kurosaki</h2>
-      <p>From: Bleach</p>
+    <div class="character">
+      <img src="https://static.wikia.nocookie.net/bleach/images/7/72/Ichigo_Kurosaki.png" alt="Ichigo">
+      <div class="name">Ichigo Kurosaki</div>
+      <div class="anime">Anime: Bleach</div>
     </div>
-    <div class="card">
-      <img src="https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/7/7e/Tanjiro_anime.png" alt="Tanjiro">
-      <h2>Tanjiro Kamado</h2>
-      <p>From: Demon Slayer</p>
+    <div class="character">
+      <img src="https://static.wikia.nocookie.net/attackontitan/images/f/f6/Eren_Jaeger_Anime.png" alt="Eren">
+      <div class="name">Eren Yeager</div>
+      <div class="anime">Anime: Attack on Titan</div>
     </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/6/6f/Eren_Jaeger_character.png" alt="Eren">
-      <h2>Eren Yeager</h2>
-      <p>From: Attack on Titan</p>
+    <div class="character">
+      <img src="https://static.wikia.nocookie.net/myheroacademia/images/3/35/Izuku_Midoriya.png" alt="Deku">
+      <div class="name">Izuku Midoriya (Deku)</div>
+      <div class="anime">Anime: My Hero Academia</div>
     </div>
   </div>
 
   <script>
-    const searchBox = document.getElementById('searchBox');
-    const characters = document.querySelectorAll('.card');
+    function searchCharacter() {
+      let input = document.getElementById("search").value.toLowerCase();
+      let characters = document.getElementsByClassName("character");
 
-    searchBox.addEventListener('keyup', function() {
-      let searchValue = searchBox.value.toLowerCase();
-      characters.forEach(card => {
-        let name = card.querySelector('h2').textContent.toLowerCase();
-        card.style.display = name.includes(searchValue) ? "block" : "none";
-      });
-    });
+      for (let i = 0; i < characters.length; i++) {
+        let name = characters[i].getElementsByClassName("name")[0].innerText.toLowerCase();
+        let anime = characters[i].getElementsByClassName("anime")[0].innerText.toLowerCase();
+
+        if (name.includes(input) || anime.includes(input)) {
+          characters[i].style.display = "block";
+        } else {
+          characters[i].style.display = "none";
+        }
+      }
+    }
   </script>
 </body>
 </html>
