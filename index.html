@@ -7,45 +7,97 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      background: #f7f7f7;
       text-align: center;
       padding: 20px;
     }
     h1 {
-      color: #ff4081;
+      color: #333;
     }
-    .character-card {
-      background: #1e1e1e;
-      border-radius: 10px;
-      padding: 15px;
+    #searchBox {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .character {
+      display: none;
+      background: white;
       margin: 10px auto;
-      max-width: 400px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      padding: 15px;
+      width: 320px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    img {
-      max-width: 100%;
-      border-radius: 8px;
+    .character img {
+      width: 100px;
+      border-radius: 50%;
     }
   </style>
 </head>
 <body>
   <h1>Anime Character Info</h1>
-  <p>Welcome! Here you can find information about your favorite anime characters.</p>
 
-  <div class="character-card">
+  <input type="text" id="searchBox" placeholder="Search characters...">
+
+  <!-- Naruto -->
+  <div class="character" data-name="naruto">
+    <img src="https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png" alt="Naruto">
     <h2>Naruto Uzumaki</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png" alt="Naruto Uzumaki">
-    <p><strong>Anime:</strong> Naruto</p>
-    <p><strong>About:</strong> A ninja from the Hidden Leaf Village who dreams of becoming Hokage.</p>
+    <p>Main character of Naruto series.</p>
   </div>
 
-  <div class="character-card">
-    <h2>Monkey D. Luffy</h2>
+  <!-- Luffy -->
+  <div class="character" data-name="luffy">
     <img src="https://upload.wikimedia.org/wikipedia/en/2/29/Monkey_D_Luffy.png" alt="Luffy">
-    <p><strong>Anime:</strong> One Piece</p>
-    <p><strong>About:</strong> The captain of the Straw Hat Pirates, aiming to become the Pirate King.</p>
+    <h2>Monkey D. Luffy</h2>
+    <p>Main character of One Piece, captain of Straw Hat Pirates.</p>
   </div>
 
+  <!-- Sasuke -->
+  <div class="character" data-name="sasuke">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/Sasuke_Uchiha.png" alt="Sasuke">
+    <h2>Sasuke Uchiha</h2>
+    <p>Rival and best friend of Naruto.</p>
+  </div>
+
+  <!-- Goku -->
+  <div class="character" data-name="goku">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/01/Goku_dragon_ball.png" alt="Goku">
+    <h2>Son Goku</h2>
+    <p>Main character of Dragon Ball series.</p>
+  </div>
+
+  <!-- Zoro -->
+  <div class="character" data-name="zoro">
+    <img src="https://upload.wikimedia.org/wikipedia/en/7/72/Roronoa_Zoro.png" alt="Zoro">
+    <h2>Roronoa Zoro</h2>
+    <p>Swordsman of the Straw Hat Pirates, One Piece.</p>
+  </div>
+
+  <!-- Itachi -->
+  <div class="character" data-name="itachi">
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Itachi_Uchiha.png" alt="Itachi">
+    <h2>Itachi Uchiha</h2>
+    <p>Famous Uchiha clan member from Naruto.</p>
+  </div>
+
+  <script>
+    const searchBox = document.getElementById("searchBox");
+    const characters = document.querySelectorAll(".character");
+
+    searchBox.addEventListener("keyup", function() {
+      let search = this.value.toLowerCase();
+      characters.forEach(char => {
+        let name = char.getAttribute("data-name");
+        if (name.includes(search)) {
+          char.style.display = "block";
+        } else {
+          char.style.display = "none";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
