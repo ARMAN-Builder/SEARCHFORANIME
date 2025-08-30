@@ -7,8 +7,9 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f7f7f7;
       text-align: center;
+      background: #f4f4f9;
+      margin: 0;
       padding: 20px;
     }
     h1 {
@@ -16,86 +17,86 @@
     }
     #searchBox {
       padding: 10px;
-      width: 300px;
+      width: 250px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      margin-bottom: 20px;
     }
-    .character {
-      display: none;
+    .characters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
       background: white;
-      margin: 10px auto;
-      padding: 15px;
-      width: 320px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 200px;
+      padding: 15px;
     }
-    .character img {
-      width: 100px;
-      border-radius: 50%;
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .card h2 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <h1>Anime Character Info</h1>
-
   <input type="text" id="searchBox" placeholder="Search characters...">
 
-  <!-- Naruto -->
-  <div class="character" data-name="naruto">
-    <img src="https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png" alt="Naruto">
-    <h2>Naruto Uzumaki</h2>
-    <p>Main character of Naruto series.</p>
-  </div>
-
-  <!-- Luffy -->
-  <div class="character" data-name="luffy">
-    <img src="https://upload.wikimedia.org/wikipedia/en/2/29/Monkey_D_Luffy.png" alt="Luffy">
-    <h2>Monkey D. Luffy</h2>
-    <p>Main character of One Piece, captain of Straw Hat Pirates.</p>
-  </div>
-
-  <!-- Sasuke -->
-  <div class="character" data-name="sasuke">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/Sasuke_Uchiha.png" alt="Sasuke">
-    <h2>Sasuke Uchiha</h2>
-    <p>Rival and best friend of Naruto.</p>
-  </div>
-
-  <!-- Goku -->
-  <div class="character" data-name="goku">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/01/Goku_dragon_ball.png" alt="Goku">
-    <h2>Son Goku</h2>
-    <p>Main character of Dragon Ball series.</p>
-  </div>
-
-  <!-- Zoro -->
-  <div class="character" data-name="zoro">
-    <img src="https://upload.wikimedia.org/wikipedia/en/7/72/Roronoa_Zoro.png" alt="Zoro">
-    <h2>Roronoa Zoro</h2>
-    <p>Swordsman of the Straw Hat Pirates, One Piece.</p>
-  </div>
-
-  <!-- Itachi -->
-  <div class="character" data-name="itachi">
-    <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Itachi_Uchiha.png" alt="Itachi">
-    <h2>Itachi Uchiha</h2>
-    <p>Famous Uchiha clan member from Naruto.</p>
+  <div class="characters" id="characterList">
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Naruto_Uzumaki.png" alt="Naruto">
+      <h2>Naruto Uzumaki</h2>
+      <p>From: Naruto</p>
+    </div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/50/Luffy.png" alt="Luffy">
+      <h2>Monkey D. Luffy</h2>
+      <p>From: One Piece</p>
+    </div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/1/18/Goku_anime.png" alt="Goku">
+      <h2>Son Goku</h2>
+      <p>From: Dragon Ball</p>
+    </div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/7/72/Ichigo_Kurosaki.png" alt="Ichigo">
+      <h2>Ichigo Kurosaki</h2>
+      <p>From: Bleach</p>
+    </div>
+    <div class="card">
+      <img src="https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/7/7e/Tanjiro_anime.png" alt="Tanjiro">
+      <h2>Tanjiro Kamado</h2>
+      <p>From: Demon Slayer</p>
+    </div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/en/6/6f/Eren_Jaeger_character.png" alt="Eren">
+      <h2>Eren Yeager</h2>
+      <p>From: Attack on Titan</p>
+    </div>
   </div>
 
   <script>
-    const searchBox = document.getElementById("searchBox");
-    const characters = document.querySelectorAll(".character");
+    const searchBox = document.getElementById('searchBox');
+    const characters = document.querySelectorAll('.card');
 
-    searchBox.addEventListener("keyup", function() {
-      let search = this.value.toLowerCase();
-      characters.forEach(char => {
-        let name = char.getAttribute("data-name");
-        if (name.includes(search)) {
-          char.style.display = "block";
-        } else {
-          char.style.display = "none";
-        }
+    searchBox.addEventListener('keyup', function() {
+      let searchValue = searchBox.value.toLowerCase();
+      characters.forEach(card => {
+        let name = card.querySelector('h2').textContent.toLowerCase();
+        card.style.display = name.includes(searchValue) ? "block" : "none";
       });
     });
   </script>
